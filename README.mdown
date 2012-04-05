@@ -1,3 +1,3 @@
 # Maltminder
 
-A very small script for searching the North Carolina Spiritous Liquor Pricebook form the command line.
+A very small script for searching the North Carolina Spiritous Liquor Pricebook from the command line.
