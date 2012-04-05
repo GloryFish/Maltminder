@@ -9,6 +9,7 @@
 #  Created by Jay Roberts on 2012-04-05.
 # 
 
+import os
 import csv
 import sys
 import string
@@ -22,7 +23,7 @@ def printEntry(entry):
     sys.stdout.flush()
 
 if __name__ == '__main__': 
-    path = 'data/nc_quarterly_pricing.csv'
+    path = os.path.dirname(os.path.realpath(__file__)) + '/data/nc_quarterly_pricing.csv'
 
     spiritReader = csv.reader(open(path, 'r'))
 
@@ -36,7 +37,9 @@ if __name__ == '__main__':
         term = None
         sys.stdout.write("Displaying all entries:\n")
         sys.stdout.flush()
-
+    
+    found = 0
+    
     for line in spiritReader:
         if term == None or term in line[2].lower():
             entry = dict()
@@ -48,4 +51,9 @@ if __name__ == '__main__':
             entry['price']     = line[6]
             
             printEntry(entry)
+            
+            found = found + 1
+            
+            
+    print 'Found %i spirits' % found
     
