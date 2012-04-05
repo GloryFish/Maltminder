@@ -1,12 +1,23 @@
 #! /usr/bin/python
 
+# 
+#  maltminder.py
+#  maltminder
+#
+#  Search NC Spiritous Liquor Pricebook from the command line.
+#
+#  Created by Jay Roberts on 2012-04-05.
+# 
 
 import csv
 import sys
 import string
+import locale
+
+locale.setlocale(locale.LC_ALL, '')
 
 def printEntry(entry):
-    sys.stdout.write('%s %s %s %s' % (entry['name'], entry['age'], entry['proof'], entry['price']))
+    sys.stdout.write('%s %s' % (locale.currency(float(entry['price'])), entry['name']))
     sys.stdout.write("\n")
     sys.stdout.flush()
 
@@ -17,10 +28,17 @@ if __name__ == '__main__':
 
     spiritData = []
 
-    term = sys.argv[1].lower()
+
+    try:
+        term = sys.argv[1]
+        term = term.lower()
+    except:
+        term = None
+        sys.stdout.write("Displaying all entries:\n")
+        sys.stdout.flush()
 
     for line in spiritReader:
-        if term in line[2].lower():
+        if term == None or term in line[2].lower():
             entry = dict()
             entry['distiller'] = line[1]
             entry['name']      = line[2]
