@@ -1,3 +1,9 @@
 # Maltminder
 
 A very small script for searching the North Carolina Spiritous Liquor Pricebook from the command line.
+
+## Usage
+
+    python maltminder.py <search string>
+
+The search string can be any single-word portion of a spirit's name. Enclose the search term in quotes for multiple words.
